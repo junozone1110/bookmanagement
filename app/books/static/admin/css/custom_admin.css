@@ -1,19 +1,22 @@
 /* 
- * Monochrome Light Theme - Simple & Clean
- * シンプルなモノクロデザインの管理画面スタイル
+ * Cursor Console Style - Clean & Simple
+ * シンプルでクリーンな管理画面デザイン
  */
 
 :root {
-    --sidebar-bg: #2c3e50;
-    --sidebar-text: #ecf0f1;
-    --main-bg: #ffffff;
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --border-color: #e0e0e0;
-    --hover-bg: #f8f9fa;
-    --button-bg: #95a5a6;
-    --button-hover: #7f8c8d;
-    --error-color: #e74c3c;
+    --header-bg: #2c3e50;
+    --text-black: #000000;
+    --text-dark: #2c3e50;
+    --text-gray: #666666;
+    --bg-white: #ffffff;
+    --bg-light: #f5f5f5;
+    --border-color: #ddd;
+    --button-green: #5cb85c;
+    --button-green-hover: #4cae4c;
+    --button-orange: #f0ad4e;
+    --button-orange-hover: #ec971f;
+    --button-red: #d9534f;
+    --button-red-hover: #c9302c;
 }
 
 /* ==========================================
@@ -21,113 +24,171 @@
    ========================================== */
 
 #header {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
+    border-bottom: none;
 }
 
-#site-name a {
-    color: var(--sidebar-text) !important;
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: var(--bg-white) !important;
 }
 
-#site-name a:hover {
-    color: var(--hover-bg) !important;
+#user-tools a {
+    color: var(--bg-white) !important;
+}
+
+#user-tools a:hover {
+    opacity: 0.8;
 }
 
 /* ==========================================
-   サイドバー・モジュール
+   メインコンテンツ
    ========================================== */
+
+body {
+    background: var(--bg-light) !important;
+    color: var(--text-black) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+#content {
+    background: var(--bg-light) !important;
+}
+
+/* ==========================================
+   モジュール（ボックス）
+   ========================================== */
+
+.module {
+    background: var(--bg-white) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 
 .module h2,
 .module caption,
-.inline-group h2,
-#content-related .module h2 {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+.inline-group h2 {
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0;
+}
+
+.module h3 {
+    color: var(--text-dark) !important;
+    font-weight: 600;
 }
 
 /* ==========================================
-   リンク
+   テキスト・リンク
    ========================================== */
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark) !important;
+}
+
 a {
-    color: var(--text-primary) !important;
+    color: var(--text-dark) !important;
 }
 
 a:hover,
 a:focus {
-    color: var(--text-secondary) !important;
+    color: var(--text-gray) !important;
 }
 
 /* ==========================================
    ボタン
    ========================================== */
 
-.button,
-input[type="submit"],
-input[type="button"],
-button[type="submit"],
-.submit-row input {
-    background: var(--button-bg) !important;
-    border-color: var(--button-bg) !important;
-    color: var(--main-bg) !important;
-}
-
-.button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover,
-button[type="submit"]:hover,
-.submit-row input:hover {
-    background: var(--button-hover) !important;
-    border-color: var(--button-hover) !important;
-}
-
+/* 追加ボタン（グリーン） */
+.addlink,
 .button.default,
 input[type="submit"].default,
-.submit-row input.default {
-    background: var(--sidebar-bg) !important;
-    border-color: var(--sidebar-bg) !important;
+.submit-row input.default,
+a.button:not(.deletelink) {
+    background: var(--button-green) !important;
+    border-color: var(--button-green) !important;
+    color: var(--bg-white) !important;
+    font-weight: 600;
 }
 
+.addlink:hover,
 .button.default:hover,
-input[type="submit"].default:hover,
-.submit-row input.default:hover {
-    background: var(--text-primary) !important;
-    border-color: var(--text-primary) !important;
+input[type="submit"].default:hover {
+    background: var(--button-green-hover) !important;
+    border-color: var(--button-green-hover) !important;
 }
 
+/* 変更ボタン（オレンジ） */
+.changelink,
+.button,
+input[type="submit"],
+input[type="button"] {
+    background: var(--button-orange) !important;
+    border-color: var(--button-orange) !important;
+    color: var(--bg-white) !important;
+    font-weight: 600;
+}
+
+.changelink:hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: var(--button-orange-hover) !important;
+    border-color: var(--button-orange-hover) !important;
+}
+
+/* 削除ボタン（レッド） */
 .deletelink,
-.deletelink-box a {
-    background: var(--error-color) !important;
-    color: var(--main-bg) !important;
+.deletelink-box a,
+a.deletelink {
+    background: var(--button-red) !important;
+    border-color: var(--button-red) !important;
+    color: var(--bg-white) !important;
+    font-weight: 600;
 }
 
 .deletelink:hover,
 .deletelink-box a:hover {
-    background: #c0392b !important;
+    background: var(--button-red-hover) !important;
+    border-color: var(--button-red-hover) !important;
 }
 
 /* ==========================================
    テーブル
    ========================================== */
 
+table {
+    background: var(--bg-white) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
 table thead th,
-#result_list thead th,
-.results thead th,
-#changelist-form table thead th {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+#result_list thead th {
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
 }
 
-table thead th a,
-#result_list thead th a,
-.results thead th a {
-    color: var(--sidebar-text) !important;
+table thead th a {
+    color: var(--bg-white) !important;
 }
 
-table tbody tr:hover,
-#result_list tbody tr:hover,
-.results tbody tr:hover {
-    background: var(--hover-bg) !important;
+table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+table tbody tr:hover {
+    background: var(--bg-light) !important;
+}
+
+table tbody td {
+    color: var(--text-black) !important;
 }
 
 /* ==========================================
@@ -135,7 +196,23 @@ table tbody tr:hover,
    ========================================== */
 
 .form-row {
+    padding: 10px;
     border-bottom: 1px solid var(--border-color);
+}
+
+.form-row label {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px;
 }
 
 input[type="text"]:focus,
@@ -144,80 +221,96 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--sidebar-bg) !important;
+    border-color: var(--header-bg) !important;
     outline: none;
+}
+
+/* ==========================================
+   ブレッドクラム
+   ========================================== */
+
+.breadcrumbs {
+    background: var(--bg-white) !important;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark) !important;
+}
+
+.breadcrumbs a {
+    color: var(--text-dark) !important;
+}
+
+.breadcrumbs a:hover {
+    color: var(--text-gray) !important;
+}
+
+/* ==========================================
+   ダッシュボード
+   ========================================== */
+
+.dashboard .module {
+    background: var(--bg-white) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.dashboard .module h2 {
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
+}
+
+.dashboard .module table {
+    border: none !important;
+}
+
+.dashboard .module table th {
+    background: var(--bg-light) !important;
+    color: var(--text-dark) !important;
+    font-weight: 600;
 }
 
 /* ==========================================
    検索バー
    ========================================== */
 
-#searchbar,
-#toolbar {
-    background: var(--hover-bg) !important;
+#changelist-search {
+    background: var(--bg-white) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
 }
 
-#searchbar input[type="text"],
-#toolbar input[type="text"] {
-    border-color: var(--border-color) !important;
-}
-
-#searchbar input[type="submit"],
-#toolbar input[type="submit"] {
-    background: var(--button-bg) !important;
-    color: var(--main-bg) !important;
-}
-
-#searchbar input[type="submit"]:hover,
-#toolbar input[type="submit"]:hover {
-    background: var(--button-hover) !important;
+#searchbar input[type="text"] {
+    border: 1px solid var(--border-color) !important;
 }
 
 /* ==========================================
    フィルター
    ========================================== */
 
+#changelist-filter {
+    background: var(--bg-white) !important;
+    border-left: 1px solid var(--border-color);
+}
+
 #changelist-filter h2 {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
 }
 
 #changelist-filter h3 {
-    color: var(--text-primary) !important;
+    color: var(--text-dark) !important;
+    font-weight: 600;
 }
 
 #changelist-filter a {
-    color: var(--text-secondary) !important;
+    color: var(--text-dark) !important;
 }
 
 #changelist-filter a:hover {
-    color: var(--text-primary) !important;
+    color: var(--text-gray) !important;
 }
 
 #changelist-filter li.selected a {
-    color: var(--text-primary) !important;
+    color: var(--button-green) !important;
     font-weight: bold;
-}
-
-/* ==========================================
-   ページネーション
-   ========================================== */
-
-.paginator a,
-.paginator span a {
-    background: var(--button-bg) !important;
-    color: var(--main-bg) !important;
-    border: none !important;
-}
-
-.paginator a:hover,
-.paginator span a:hover {
-    background: var(--button-hover) !important;
-}
-
-.paginator .this-page {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
 }
 
 /* ==========================================
@@ -226,89 +319,64 @@ select:focus {
 
 .messagelist {
     border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+ul.messagelist li {
+    border-bottom: none;
 }
 
 ul.messagelist li.success {
-    background: #d4edda !important;
-    border-color: #c3e6cb !important;
-    color: #155724 !important;
+    background: #dff0d8 !important;
+    border-left: 4px solid var(--button-green) !important;
+    color: #3c763d !important;
 }
 
 ul.messagelist li.error {
-    background: #f8d7da !important;
-    border-color: #f5c6cb !important;
-    color: #721c24 !important;
+    background: #f2dede !important;
+    border-left: 4px solid var(--button-red) !important;
+    color: #a94442 !important;
 }
 
 ul.messagelist li.warning {
-    background: #fff3cd !important;
-    border-color: #ffeaa7 !important;
-    color: #856404 !important;
+    background: #fcf8e3 !important;
+    border-left: 4px solid var(--button-orange) !important;
+    color: #8a6d3b !important;
 }
 
 /* ==========================================
-   ダッシュボード
+   ページネーション
    ========================================== */
 
-.dashboard .module {
-    background: var(--main-bg) !important;
+.paginator a {
+    background: var(--bg-white) !important;
     border: 1px solid var(--border-color) !important;
+    color: var(--text-dark) !important;
 }
 
-.dashboard .module h2 {
-    background: var(--sidebar-bg) !important;
-    color: var(--sidebar-text) !important;
+.paginator a:hover {
+    background: var(--bg-light) !important;
 }
 
-.dashboard .module table th {
-    background: var(--hover-bg) !important;
-    color: var(--text-primary) !important;
-}
-
-.dashboard .module table th a {
-    color: var(--text-primary) !important;
-}
-
-.dashboard .module table td a {
-    color: var(--text-primary) !important;
-}
-
-.dashboard a {
-    color: var(--text-primary) !important;
-}
-
-.dashboard .module table th a:hover,
-.dashboard .module table td a:hover,
-.dashboard a:hover {
-    color: var(--text-secondary) !important;
-}
-
-/* ダッシュボードのアクションリンク */
-.dashboard .addlink,
-.dashboard .changelink,
-.dashboard .viewlink {
-    color: var(--text-primary) !important;
-}
-
-.dashboard .addlink:hover,
-.dashboard .changelink:hover,
-.dashboard .viewlink:hover {
-    color: var(--button-bg) !important;
+.paginator .this-page {
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
+    border: 1px solid var(--header-bg) !important;
 }
 
 /* ==========================================
-   ブレッドクラム
+   サイドバー（ナビゲーション）
    ========================================== */
 
-.breadcrumbs {
-    background: var(--hover-bg) !important;
+.module ul li a {
+    color: var(--text-dark) !important;
 }
 
-.breadcrumbs a {
-    color: var(--text-primary) !important;
+.module ul li a:hover {
+    background: var(--bg-light) !important;
 }
 
-.breadcrumbs a:hover {
-    color: var(--text-secondary) !important;
+.module ul li.selected a {
+    background: var(--header-bg) !important;
+    color: var(--bg-white) !important;
 }
-

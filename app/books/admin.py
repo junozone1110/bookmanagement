@@ -75,12 +75,12 @@ class BookAdmin(admin.ModelAdmin):
     title_with_status.admin_order_field = 'title'
     
     def status_badge(self, obj):
-        """ステータスバッジ - モノクロデザイン"""
+        """ステータスバッジ - Cursorコンソールスタイル"""
         colors = {
-            'ordered': '#95a5a6',    # グレー
-            'available': '#7f8c8d',  # ダークグレー
-            'rented': '#2c3e50',     # ダークブルーグレー
-            'other': '#bdc3c7',      # ライトグレー
+            'ordered': '#f0ad4e',    # オレンジ
+            'available': '#5cb85c',  # グリーン
+            'rented': '#2c3e50',     # ダークグレー
+            'other': '#999999',      # グレー
         }
         labels = {
             'ordered': '購入中',
@@ -88,10 +88,10 @@ class BookAdmin(admin.ModelAdmin):
             'rented': '貸出中',
             'other': 'その他',
         }
-        color = colors.get(obj.status, '#bdc3c7')
+        color = colors.get(obj.status, '#999999')
         label = labels.get(obj.status, obj.status)
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;">{}</span>',
+            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">{}</span>',
             color,
             label
         )
@@ -99,15 +99,15 @@ class BookAdmin(admin.ModelAdmin):
     status_badge.admin_order_field = 'status'
     
     def current_borrower(self, obj):
-        """現在の貸出人 - モノクロデザイン"""
+        """現在の貸出人 - Cursorコンソールスタイル"""
         if obj.status == 'rented':
             borrower = obj.get_current_borrower()
             if borrower:
                 return format_html(
-                    '<span style="background-color: #95a5a6; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600;">👤 {}</span>',
+                    '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">👤 {}</span>',
                     borrower
                 )
-        return format_html('<span style="color: #7f8c8d;">-</span>')
+        return format_html('<span style="color: #999;">-</span>')
     current_borrower.short_description = '貸出人'
 
 
@@ -136,17 +136,17 @@ class RentalHistoryAdmin(admin.ModelAdmin):
     )
     
     def book_with_status(self, obj):
-        """書籍名と現在の貸出状況 - モノクロデザイン"""
+        """書籍名と現在の貸出状況 - Cursorコンソールスタイル"""
         if obj.actual_return_date:
             status_icon = '✓'
-            status_color = '#7f8c8d'  # ダークグレー
+            status_color = '#5cb85c'  # グリーン
             status_text = '返却済み'
         else:
             status_icon = '📖'
-            status_color = '#2c3e50'  # ダークブルーグレー
+            status_color = '#f0ad4e'  # オレンジ
             status_text = '貸出中'
         return format_html(
-            '<span style="color: {};"><strong>{}</strong> {}</span><br/><small style="color: #7f8c8d;">{}</small>',
+            '<span style="color: {};"><strong>{}</strong> {}</span><br/><small style="color: #000;">{}</small>',
             status_color,
             status_icon,
             status_text,
@@ -156,30 +156,30 @@ class RentalHistoryAdmin(admin.ModelAdmin):
     book_with_status.admin_order_field = 'book'
     
     def borrower_badge(self, obj):
-        """貸出人バッジ - モノクロデザイン"""
+        """貸出人バッジ - Cursorコンソールスタイル"""
         return format_html(
-            '<span style="background-color: #95a5a6; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600;">👤 {}</span>',
+            '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">👤 {}</span>',
             obj.borrower_name
         )
     borrower_badge.short_description = '貸出人'
     borrower_badge.admin_order_field = 'borrower_name'
     
     def overdue_badge(self, obj):
-        """延滞バッジ - モノクロデザイン"""
+        """延滞バッジ - Cursorコンソールスタイル"""
         if obj.is_overdue():
             from datetime import date
             overdue_days = (date.today() - obj.expected_return_date).days
             return format_html(
-                '<span style="background-color: #e74c3c; color: white; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;">⚠ {}日延滞</span>',
+                '<span style="background-color: #d9534f; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">⚠ {}日延滞</span>',
                 overdue_days
             )
         elif not obj.actual_return_date:
             return format_html(
-                '<span style="color: #7f8c8d; font-size: 11px; font-weight: 600;">✓ 期限内</span>'
+                '<span style="color: #5cb85c; font-size: 12px; font-weight: 600;">✓ 期限内</span>'
             )
         else:
             return format_html(
-                '<span style="color: #bdc3c7; font-size: 11px;">-</span>'
+                '<span style="color: #999; font-size: 12px;">-</span>'
             )
     overdue_badge.short_description = '延滞状況'
 
@@ -211,17 +211,17 @@ class ErrorLogAdmin(admin.ModelAdmin):
     )
     
     def error_type_badge(self, obj):
-        """エラー種別バッジ - モノクロデザイン"""
+        """エラー種別バッジ - Cursorコンソールスタイル"""
         colors = {
-            'INITIALIZATION_ERROR': '#e74c3c',  # 赤（重大エラー）
-            'INVALID_ISBN': '#95a5a6',          # グレー
-            'BOOK_NOT_FOUND': '#95a5a6',        # グレー
-            'PROCESSING_ERROR': '#e74c3c',      # 赤（重大エラー）
-            'BATCH_ERROR': '#e74c3c',           # 赤（重大エラー）
+            'INITIALIZATION_ERROR': '#d9534f',  # レッド（重大エラー）
+            'INVALID_ISBN': '#f0ad4e',          # オレンジ
+            'BOOK_NOT_FOUND': '#f0ad4e',        # オレンジ
+            'PROCESSING_ERROR': '#d9534f',      # レッド（重大エラー）
+            'BATCH_ERROR': '#d9534f',           # レッド（重大エラー）
         }
-        color = colors.get(obj.error_type, '#7f8c8d')
+        color = colors.get(obj.error_type, '#999999')
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;">⚠ {}</span>',
+            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">⚠ {}</span>',
             color,
             obj.error_type
         )
