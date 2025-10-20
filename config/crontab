@@ -1,0 +1,20 @@
+# 書籍管理システム Crontab設定
+# 
+# インストール方法:
+# crontab config/crontab
+#
+# 確認方法:
+# crontab -l
+
+# 環境変数
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# 書籍取り込みバッチ：1時間おきに実行
+0 * * * * /Users/zone/Documents/work/Cursor/18_bookmanagement/scripts/run_batch.sh >> /Users/zone/Documents/work/Cursor/18_bookmanagement/logs/cron.log 2>&1
+
+# 注意事項:
+# - 上記のパスは環境に合わせて変更してください
+# - Dockerが起動していることを前提としています
+# - ログは logs/cron.log と logs/batch_YYYYMMDD_HHMMSS.log に出力されます
+

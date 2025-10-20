@@ -1,0 +1,20 @@
+# Django
+Django==5.0.9
+
+# Database
+mysqlclient==2.2.4
+
+# Google API
+google-api-python-client==2.149.0
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.1
+
+# HTTP requests
+requests==2.32.3
+
+# Environment variables
+python-dotenv==1.0.1
+
+# Timezone
+pytz==2024.2
+

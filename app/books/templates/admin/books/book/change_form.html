@@ -1,0 +1,94 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<script type="text/javascript">
+(function() {
+    // Django管理画面のjQueryを使用
+    var $ = django.jQuery;
+    
+    $(document).ready(function() {
+        // ISBNフィールドの後に「書籍情報を取得」ボタンを追加
+        var isbnField = $('#id_isbn');
+        
+        if (isbnField.length) {
+            // ボタンコンテナを作成
+            var buttonHtml = '<div style="margin-top: 10px;">' +
+                '<button type="button" id="fetch-book-info-btn" class="button" style="padding: 8px 15px;">' +
+                '📖 ISBNから書籍情報を取得' +
+                '</button>' +
+                '<span id="fetch-status" style="margin-left: 10px; font-weight: bold;"></span>' +
+                '</div>';
+            
+            isbnField.closest('.form-row').append(buttonHtml);
+            
+            // ボタンクリックイベント
+            $('#fetch-book-info-btn').on('click', function() {
+                var isbn = isbnField.val().trim();
+                var statusSpan = $('#fetch-status');
+                var button = $(this);
+                
+                if (!isbn) {
+                    statusSpan.html('<span style="color: #f44336;">❌ ISBNコードを入力してください</span>');
+                    return;
+                }
+                
+                // ボタンを無効化してローディング表示
+                button.prop('disabled', true).text('⏳ 取得中...');
+                statusSpan.html('<span style="color: #2196f3;">取得中...</span>');
+                
+                // Ajax リクエスト
+                $.ajax({
+                    url: '/books/api/fetch-book-info/',
+                    method: 'GET',
+                    data: { isbn: isbn },
+                    success: function(response) {
+                        if (response.success) {
+                            // 取得した情報をフォームに入力
+                            $('#id_title').val(response.data.title);
+                            $('#id_author').val(response.data.author);
+                            $('#id_publisher').val(response.data.publisher);
+                            $('#id_published_date').val(response.data.published_date);
+                            $('#id_description').val(response.data.description);
+                            $('#id_thumbnail_url').val(response.data.thumbnail_url);
+                            
+                            statusSpan.html('<span style="color: #4caf50;">✅ 書籍情報を取得しました！</span>');
+                            
+                            // 3秒後にメッセージを消す
+                            setTimeout(function() {
+                                statusSpan.fadeOut(function() {
+                                    $(this).html('').show();
+                                });
+                            }, 3000);
+                        } else {
+                            statusSpan.html('<span style="color: #f44336;">❌ ' + response.error + '</span>');
+                        }
+                    },
+                    error: function(xhr) {
+                        var errorMsg = '書籍情報の取得に失敗しました';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMsg = xhr.responseJSON.error;
+                        }
+                        statusSpan.html('<span style="color: #f44336;">❌ ' + errorMsg + '</span>');
+                    },
+                    complete: function() {
+                        // ボタンを元に戻す
+                        button.prop('disabled', false).html('📖 ISBNから書籍情報を取得');
+                    }
+                });
+            });
+            
+            // Enterキーでボタンをクリック
+            isbnField.on('keypress', function(e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    $('#fetch-book-info-btn').click();
+                }
+            });
+        }
+    });
+})();
+</script>
+{% endblock %}
+
