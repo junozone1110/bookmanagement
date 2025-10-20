@@ -1,23 +1,9 @@
 from django.contrib import admin
-from django.contrib.admin import AdminSite
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django import forms
 from .models import Book, RentalHistory, ErrorLog
-
-
-class CustomAdminSite(AdminSite):
-    """カスタム管理サイト - グローバルにCSSを適用"""
-    
-    class Media:
-        css = {
-            'all': ('admin/css/custom_admin.css',)
-        }
-
-
-# カスタム管理サイトのインスタンスを作成
-custom_admin_site = CustomAdminSite(name='custom_admin')
 
 
 @admin.register(Book)
