@@ -1,19 +1,62 @@
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django import forms
 from .models import Book, RentalHistory, ErrorLog
+from datetime import date, timedelta
+
+
+class StatusDropdownFilter(SimpleListFilter):
+    """ステータス用プルダウンフィルター"""
+    title = 'ステータス'
+    parameter_name = 'status'
+    
+    def lookups(self, request, model_admin):
+        return (
+            ('ordered', '購入中'),
+            ('available', '本棚保管中'),
+            ('rented', '貸出中'),
+            ('other', 'その他'),
+        )
+    
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+class CreatedDateDropdownFilter(SimpleListFilter):
+    """作成日時用プルダウンフィルター"""
+    title = '作成日時'
+    parameter_name = 'created_at'
+    
+    def lookups(self, request, model_admin):
+        return (
+            ('today', '今日'),
+            ('week', '過去7日間'),
+            ('month', '過去30日間'),
+        )
+    
+    def queryset(self, request, queryset):
+        if self.value() == 'today':
+            return queryset.filter(created_at__date=date.today())
+        elif self.value() == 'week':
+            return queryset.filter(created_at__gte=date.today() - timedelta(days=7))
+        elif self.value() == 'month':
+            return queryset.filter(created_at__gte=date.today() - timedelta(days=30))
+        return queryset
 
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['thumbnail_image', 'title_with_status', 'author', 'isbn', 'status_badge', 'current_borrower', 'location', 'created_at']
-    list_filter = ['status', 'application_date', 'approval_date', 'created_at']
+    list_filter = [StatusDropdownFilter, 'application_date', 'approval_date', CreatedDateDropdownFilter]
     search_fields = ['title', 'author', 'isbn', 'application_number', 'applicant_name', 'approver_name']
     readonly_fields = ['created_at', 'updated_at', 'thumbnail_preview']
     list_per_page = 20
-    date_hierarchy = 'created_at'
+    date_hierarchy = None  # 上部にフィルターを配置するため無効化
     
     class Media:
         css = {

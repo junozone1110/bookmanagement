@@ -1,0 +1,71 @@
+{% extends "admin/change_list.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        /* フィルターを上部に移動 */
+        #changelist-filter {
+            float: none !important;
+            width: 100% !important;
+            margin: 0 0 20px 0 !important;
+            border: 1px solid #ddd !important;
+            border-radius: 4px !important;
+            padding: 15px !important;
+            background: white !important;
+        }
+        
+        #changelist-filter h2 {
+            font-size: 16px !important;
+            margin-bottom: 15px !important;
+        }
+        
+        #changelist-filter h3 {
+            display: inline-block !important;
+            margin-right: 20px !important;
+            font-weight: 600 !important;
+            color: #2c3e50 !important;
+        }
+        
+        #changelist-filter ul {
+            display: inline-block !important;
+            margin: 0 30px 0 0 !important;
+        }
+        
+        #changelist-filter li {
+            display: inline-block !important;
+            margin-right: 10px !important;
+        }
+        
+        #changelist-filter li a {
+            padding: 5px 10px !important;
+            border: 1px solid #ddd !important;
+            border-radius: 3px !important;
+            background: white !important;
+            color: #2c3e50 !important;
+        }
+        
+        #changelist-filter li.selected a {
+            background: #5a6c7d !important;
+            color: white !important;
+            border-color: #5a6c7d !important;
+        }
+        
+        #changelist-filter li a:hover {
+            background: #f5f5f5 !important;
+        }
+        
+        /* リスト表示エリアを全幅に */
+        #changelist {
+            margin-right: 0 !important;
+        }
+        
+        .change-list {
+            width: 100% !important;
+        }
+        
+        /* date_hierarchyを非表示 */
+        .xfull {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
