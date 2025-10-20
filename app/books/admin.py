@@ -91,7 +91,7 @@ class BookAdmin(admin.ModelAdmin):
         color = colors.get(obj.status, '#999999')
         label = labels.get(obj.status, obj.status)
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">{}</span>',
+            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-block;">{}</span>',
             color,
             label
         )
@@ -104,7 +104,7 @@ class BookAdmin(admin.ModelAdmin):
             borrower = obj.get_current_borrower()
             if borrower:
                 return format_html(
-                    '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">👤 {}</span>',
+                    '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-block;">👤 {}</span>',
                     borrower
                 )
         return format_html('<span style="color: #999;">-</span>')
@@ -158,7 +158,7 @@ class RentalHistoryAdmin(admin.ModelAdmin):
     def borrower_badge(self, obj):
         """貸出人バッジ - Cursorコンソールスタイル"""
         return format_html(
-            '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">👤 {}</span>',
+            '<span style="background-color: #2c3e50; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-block;">👤 {}</span>',
             obj.borrower_name
         )
     borrower_badge.short_description = '貸出人'
@@ -170,16 +170,16 @@ class RentalHistoryAdmin(admin.ModelAdmin):
             from datetime import date
             overdue_days = (date.today() - obj.expected_return_date).days
             return format_html(
-                '<span style="background-color: #d9534f; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">⚠ {}日延滞</span>',
+                '<span style="background-color: #d9534f; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-block;">⚠ {}日延滞</span>',
                 overdue_days
             )
         elif not obj.actual_return_date:
             return format_html(
-                '<span style="color: #5cb85c; font-size: 12px; font-weight: 600;">✓ 期限内</span>'
+                '<span style="color: #5cb85c; font-size: 12px; font-weight: 600; white-space: nowrap;">✓ 期限内</span>'
             )
         else:
             return format_html(
-                '<span style="color: #999; font-size: 12px;">-</span>'
+                '<span style="color: #999; font-size: 12px; white-space: nowrap;">-</span>'
             )
     overdue_badge.short_description = '延滞状況'
 
@@ -221,7 +221,7 @@ class ErrorLogAdmin(admin.ModelAdmin):
         }
         color = colors.get(obj.error_type, '#999999')
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600;">⚠ {}</span>',
+            '<span style="background-color: {}; color: white; padding: 5px 12px; border-radius: 3px; font-size: 12px; font-weight: 600; white-space: nowrap; display: inline-block;">⚠ {}</span>',
             color,
             obj.error_type
         )

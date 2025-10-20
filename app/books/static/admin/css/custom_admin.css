@@ -4,7 +4,7 @@
  */
 
 :root {
-    --header-bg: #2c3e50;
+    --header-bg: #5a6c7d;
     --text-black: #000000;
     --text-dark: #2c3e50;
     --text-gray: #666666;
@@ -169,14 +169,16 @@ table {
 
 table thead th,
 #result_list thead th {
-    background: var(--header-bg) !important;
+    background: #7a8a9a !important;
     color: var(--bg-white) !important;
     font-weight: 600;
     border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
 }
 
 table thead th a {
     color: var(--bg-white) !important;
+    white-space: nowrap;
 }
 
 table tbody tr {
@@ -189,6 +191,7 @@ table tbody tr:hover {
 
 table tbody td {
     color: var(--text-black) !important;
+    white-space: nowrap;
 }
 
 /* ==========================================
@@ -262,9 +265,10 @@ select:focus {
 }
 
 .dashboard .module table th {
-    background: var(--bg-light) !important;
+    background: #e8eef3 !important;
     color: var(--text-dark) !important;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 /* ==========================================
