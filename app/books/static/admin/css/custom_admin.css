@@ -1,0 +1,443 @@
+/* 
+ * カスタム管理画面スタイル
+ * カラーパレット定義
+ */
+
+:root {
+    /* カラーパレット */
+    --color-brown: #5C4033;        /* 1: 茶色 - スライドタイトル */
+    --color-white: #FFFFFF;        /* 2: 白 */
+    --color-gray: #4A4A4A;         /* 3: グレー - 本文 */
+    --color-light-blue: #B8D4E8;  /* 4: ライトブルー */
+    --color-blue: #2E6B9E;         /* 5: ブルー - 文字強調 */
+    --color-dark-blue: #1E4A6F;   /* 6: ダークブルー */
+    --color-coral: #D4826B;        /* 7: コーラル - アクセント */
+    --color-dark-coral: #9B6B5C;  /* 8: ダークコーラル - アクセント */
+    --color-peach: #E8C4B0;        /* 9: ライトピーチ - アクセント */
+    --color-light-gray: #D9C7C2;  /* 10: ライトグレーピンク - アクセント */
+}
+
+/* ==========================================
+   ヘッダー部分
+   ========================================== */
+
+/* ヘッダー背景 - 茶色 */
+#header {
+    background: var(--color-brown) !important;
+    color: var(--color-white) !important;
+}
+
+/* サイトタイトル - 白文字 */
+#site-name a {
+    color: var(--color-white) !important;
+    font-weight: 600;
+}
+
+#site-name a:hover,
+#site-name a:focus {
+    color: var(--color-light-blue) !important;
+}
+
+/* ヘッダーのリンク */
+#header a {
+    color: var(--color-white) !important;
+}
+
+#header a:hover,
+#header a:focus {
+    color: var(--color-light-blue) !important;
+}
+
+/* ユーザーツール */
+#user-tools a {
+    color: var(--color-white) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================
+   サイドバー
+   ========================================== */
+
+/* サイドバーのリンク - ブルー */
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+/* ナビゲーションサイドバー */
+.module ul li a {
+    color: var(--color-gray) !important;
+}
+
+.module ul li a:hover,
+.module ul li a:focus {
+    color: var(--color-blue) !important;
+    background: var(--color-light-blue) !important;
+}
+
+/* 選択中のナビゲーション */
+.module ul li.selected a {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+/* ==========================================
+   メインコンテンツエリア
+   ========================================== */
+
+/* ページタイトル - 茶色 */
+#content h1 {
+    color: var(--color-brown) !important;
+}
+
+/* サブタイトル - ブルー */
+#content h2,
+#content h3 {
+    color: var(--color-blue) !important;
+}
+
+/* 本文テキスト - グレー */
+#content p,
+#content td,
+#content th,
+#content label {
+    color: var(--color-gray) !important;
+}
+
+/* 強調テキスト - ブルー */
+#content strong,
+#content b {
+    color: var(--color-blue) !important;
+}
+
+/* ==========================================
+   ボタン
+   ========================================== */
+
+/* 主要ボタン - コーラル（アクセントカラー） */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+    background: var(--color-coral) !important;
+    color: var(--color-white) !important;
+    border: none !important;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: var(--color-dark-coral) !important;
+}
+
+/* デフォルトボタン */
+.default {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+.default:hover {
+    background: var(--color-dark-blue) !important;
+}
+
+/* 削除ボタン */
+.deletelink,
+.deletelink-box a {
+    background: #c0392b !important;
+    color: var(--color-white) !important;
+}
+
+.deletelink:hover,
+.deletelink-box a:hover {
+    background: #a93226 !important;
+}
+
+/* ==========================================
+   リンク
+   ========================================== */
+
+/* 通常のリンク - ブルー */
+#content a,
+a {
+    color: var(--color-blue) !important;
+}
+
+#content a:hover,
+a:hover,
+#content a:focus,
+a:focus {
+    color: var(--color-dark-blue) !important;
+}
+
+/* アクションリンク - コーラル */
+.addlink,
+.changelink,
+.viewlink {
+    color: var(--color-coral) !important;
+}
+
+.addlink:hover,
+.changelink:hover,
+.viewlink:hover {
+    color: var(--color-dark-coral) !important;
+}
+
+/* ==========================================
+   テーブル
+   ========================================== */
+
+/* テーブルヘッダー - ブルー */
+#result_list thead th,
+.results thead th {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+/* テーブルヘッダーリンク */
+#result_list thead th a,
+.results thead th a {
+    color: var(--color-white) !important;
+}
+
+/* 行の背景 - 交互の色 */
+#result_list tbody tr:nth-child(odd),
+.results tbody tr:nth-child(odd) {
+    background: var(--color-white);
+}
+
+#result_list tbody tr:nth-child(even),
+.results tbody tr:nth-child(even) {
+    background: var(--color-light-gray);
+}
+
+/* ホバー時 */
+#result_list tbody tr:hover,
+.results tbody tr:hover {
+    background: var(--color-peach) !important;
+}
+
+/* ==========================================
+   フォーム
+   ========================================== */
+
+/* フィールドセット */
+fieldset {
+    border-color: var(--color-light-blue) !important;
+}
+
+fieldset h2 {
+    background: var(--color-brown) !important;
+    color: var(--color-white) !important;
+}
+
+/* 入力フィールド */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+    border-color: var(--color-light-blue) !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-blue) !important;
+    outline-color: var(--color-blue) !important;
+}
+
+/* ==========================================
+   メッセージ
+   ========================================== */
+
+/* 成功メッセージ */
+.success,
+.messagelist .success {
+    background: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
+}
+
+/* 警告メッセージ */
+.warning,
+.messagelist .warning {
+    background: #fff3cd !important;
+    border-color: #ffeaa7 !important;
+    color: #856404 !important;
+}
+
+/* エラーメッセージ */
+.error,
+.messagelist .error,
+.errornote {
+    background: #f8d7da !important;
+    border-color: #f5c6cb !important;
+    color: #721c24 !important;
+}
+
+/* インフォメッセージ - コーラル系 */
+.info,
+.messagelist .info {
+    background: var(--color-peach) !important;
+    border-color: var(--color-coral) !important;
+    color: var(--color-brown) !important;
+}
+
+/* ==========================================
+   ダッシュボード
+   ========================================== */
+
+/* ダッシュボードモジュール */
+.module h2 {
+    background: var(--color-brown) !important;
+    color: var(--color-white) !important;
+}
+
+/* ダッシュボードのリンクカラー */
+.dashboard .module table th a {
+    color: var(--color-blue) !important;
+}
+
+/* ==========================================
+   ページネーション
+   ========================================== */
+
+.paginator a {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+    border: none !important;
+}
+
+.paginator a:hover {
+    background: var(--color-dark-blue) !important;
+}
+
+.paginator .this-page {
+    background: var(--color-coral) !important;
+    color: var(--color-white) !important;
+}
+
+/* ==========================================
+   フィルター
+   ========================================== */
+
+#changelist-filter h2 {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+#changelist-filter h3 {
+    color: var(--color-brown) !important;
+}
+
+#changelist-filter li.selected a {
+    color: var(--color-coral) !important;
+    font-weight: bold;
+}
+
+/* ==========================================
+   検索バー
+   ========================================== */
+
+#searchbar {
+    background: var(--color-light-gray) !important;
+}
+
+#searchbar input[type="text"] {
+    border-color: var(--color-blue) !important;
+}
+
+#searchbar input[type="submit"] {
+    background: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+#searchbar input[type="submit"]:hover {
+    background: var(--color-dark-blue) !important;
+}
+
+/* ==========================================
+   ステータスバッジのカスタマイズ
+   ========================================== */
+
+/* 既存のステータスバッジの色を調整 */
+.status-badge {
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+/* 購入中 - コーラル */
+.status-ordered {
+    background-color: var(--color-coral) !important;
+    color: var(--color-white) !important;
+}
+
+/* 本棚保管中 - ブルー */
+.status-available {
+    background-color: var(--color-blue) !important;
+    color: var(--color-white) !important;
+}
+
+/* 貸出中 - ダークブルー */
+.status-rented {
+    background-color: var(--color-dark-blue) !important;
+    color: var(--color-white) !important;
+}
+
+/* その他 - グレー */
+.status-other {
+    background-color: var(--color-gray) !important;
+    color: var(--color-white) !important;
+}
+
+/* ==========================================
+   レスポンシブ対応
+   ========================================== */
+
+@media (max-width: 768px) {
+    #header {
+        padding: 10px;
+    }
+    
+    .module h2 {
+        font-size: 14px;
+    }
+}
+
+/* ==========================================
+   アクセシビリティ
+   ========================================== */
+
+/* フォーカス時の視認性向上 */
+*:focus {
+    outline: 2px solid var(--color-coral) !important;
+    outline-offset: 2px;
+}
+
+/* スキップリンク */
+.skip-link {
+    background: var(--color-brown);
+    color: var(--color-white);
+    padding: 8px;
+    position: absolute;
+    left: -9999px;
+}
+
+.skip-link:focus {
+    left: 0;
+    z-index: 9999;
+}
+
