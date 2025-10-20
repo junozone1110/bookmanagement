@@ -75,12 +75,12 @@ class BookAdmin(admin.ModelAdmin):
     title_with_status.admin_order_field = 'title'
     
     def status_badge(self, obj):
-        """ステータスバッジ - カラーパレットに準拠"""
+        """ステータスバッジ - モノクロデザイン"""
         colors = {
-            'ordered': '#D4826B',    # コーラル（7）
-            'available': '#2E6B9E',  # ブルー（5）
-            'rented': '#1E4A6F',     # ダークブルー（6）
-            'other': '#4A4A4A',      # グレー（3）
+            'ordered': '#95a5a6',    # グレー
+            'available': '#7f8c8d',  # ダークグレー
+            'rented': '#2c3e50',     # ダークブルーグレー
+            'other': '#bdc3c7',      # ライトグレー
         }
         labels = {
             'ordered': '購入中',
@@ -88,7 +88,7 @@ class BookAdmin(admin.ModelAdmin):
             'rented': '貸出中',
             'other': 'その他',
         }
-        color = colors.get(obj.status, '#4A4A4A')
+        color = colors.get(obj.status, '#bdc3c7')
         label = labels.get(obj.status, obj.status)
         return format_html(
             '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;">{}</span>',
@@ -99,15 +99,15 @@ class BookAdmin(admin.ModelAdmin):
     status_badge.admin_order_field = 'status'
     
     def current_borrower(self, obj):
-        """現在の貸出人 - カラーパレットに準拠"""
+        """現在の貸出人 - モノクロデザイン"""
         if obj.status == 'rented':
             borrower = obj.get_current_borrower()
             if borrower:
                 return format_html(
-                    '<span style="color: #1E4A6F; font-weight: bold;">📖 {}</span>',
+                    '<span style="background-color: #95a5a6; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600;">👤 {}</span>',
                     borrower
                 )
-        return '-'
+        return format_html('<span style="color: #7f8c8d;">-</span>')
     current_borrower.short_description = '貸出人'
 
 
@@ -136,17 +136,17 @@ class RentalHistoryAdmin(admin.ModelAdmin):
     )
     
     def book_with_status(self, obj):
-        """書籍名と現在の貸出状況 - カラーパレットに準拠"""
+        """書籍名と現在の貸出状況 - モノクロデザイン"""
         if obj.actual_return_date:
             status_icon = '✓'
-            status_color = '#2E6B9E'  # ブルー（5）
+            status_color = '#7f8c8d'  # ダークグレー
             status_text = '返却済み'
         else:
             status_icon = '📖'
-            status_color = '#1E4A6F'  # ダークブルー（6）
+            status_color = '#2c3e50'  # ダークブルーグレー
             status_text = '貸出中'
         return format_html(
-            '<span style="color: {};"><strong>{}</strong> {}</span><br/><small style="color: #4A4A4A;">{}</small>',
+            '<span style="color: {};"><strong>{}</strong> {}</span><br/><small style="color: #7f8c8d;">{}</small>',
             status_color,
             status_icon,
             status_text,
@@ -156,30 +156,30 @@ class RentalHistoryAdmin(admin.ModelAdmin):
     book_with_status.admin_order_field = 'book'
     
     def borrower_badge(self, obj):
-        """貸出人バッジ - カラーパレットに準拠"""
+        """貸出人バッジ - モノクロデザイン"""
         return format_html(
-            '<span style="background-color: #E8C4B0; color: #5C4033; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600;">👤 {}</span>',
+            '<span style="background-color: #95a5a6; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600;">👤 {}</span>',
             obj.borrower_name
         )
     borrower_badge.short_description = '貸出人'
     borrower_badge.admin_order_field = 'borrower_name'
     
     def overdue_badge(self, obj):
-        """延滞バッジ - カラーパレットに準拠"""
+        """延滞バッジ - モノクロデザイン"""
         if obj.is_overdue():
             from datetime import date
             overdue_days = (date.today() - obj.expected_return_date).days
             return format_html(
-                '<span style="background-color: #c0392b; color: white; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;">⚠ {}日延滞</span>',
+                '<span style="background-color: #e74c3c; color: white; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;">⚠ {}日延滞</span>',
                 overdue_days
             )
         elif not obj.actual_return_date:
             return format_html(
-                '<span style="color: #2E6B9E; font-size: 11px; font-weight: 600;">✓ 期限内</span>'
+                '<span style="color: #7f8c8d; font-size: 11px; font-weight: 600;">✓ 期限内</span>'
             )
         else:
             return format_html(
-                '<span style="color: #4A4A4A; font-size: 11px;">-</span>'
+                '<span style="color: #bdc3c7; font-size: 11px;">-</span>'
             )
     overdue_badge.short_description = '延滞状況'
 
@@ -211,15 +211,15 @@ class ErrorLogAdmin(admin.ModelAdmin):
     )
     
     def error_type_badge(self, obj):
-        """エラー種別バッジ - カラーパレットに準拠"""
+        """エラー種別バッジ - モノクロデザイン"""
         colors = {
-            'INITIALIZATION_ERROR': '#c0392b',  # 赤（エラー）
-            'INVALID_ISBN': '#D4826B',         # コーラル（7）
-            'BOOK_NOT_FOUND': '#D4826B',       # コーラル（7）
-            'PROCESSING_ERROR': '#c0392b',     # 赤（エラー）
-            'BATCH_ERROR': '#c0392b',          # 赤（エラー）
+            'INITIALIZATION_ERROR': '#e74c3c',  # 赤（重大エラー）
+            'INVALID_ISBN': '#95a5a6',          # グレー
+            'BOOK_NOT_FOUND': '#95a5a6',        # グレー
+            'PROCESSING_ERROR': '#e74c3c',      # 赤（重大エラー）
+            'BATCH_ERROR': '#e74c3c',           # 赤（重大エラー）
         }
-        color = colors.get(obj.error_type, '#4A4A4A')
+        color = colors.get(obj.error_type, '#7f8c8d')
         return format_html(
             '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;">⚠ {}</span>',
             color,

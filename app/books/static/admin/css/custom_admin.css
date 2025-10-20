@@ -1,331 +1,176 @@
 /* 
- * カスタム管理画面スタイル
- * カラーパレット定義
+ * Monochrome Light Theme - Simple & Clean
+ * シンプルなモノクロデザインの管理画面スタイル
  */
 
 :root {
-    /* カラーパレット */
-    --color-brown: #5C4033;        /* 1: 茶色 - スライドタイトル */
-    --color-white: #FFFFFF;        /* 2: 白 */
-    --color-gray: #4A4A4A;         /* 3: グレー - 本文 */
-    --color-light-blue: #B8D4E8;  /* 4: ライトブルー */
-    --color-blue: #2E6B9E;         /* 5: ブルー - 文字強調 */
-    --color-dark-blue: #1E4A6F;   /* 6: ダークブルー */
-    --color-coral: #D4826B;        /* 7: コーラル - アクセント */
-    --color-dark-coral: #9B6B5C;  /* 8: ダークコーラル - アクセント */
-    --color-peach: #E8C4B0;        /* 9: ライトピーチ - アクセント */
-    --color-light-gray: #D9C7C2;  /* 10: ライトグレーピンク - アクセント */
+    --sidebar-bg: #2c3e50;
+    --sidebar-text: #ecf0f1;
+    --main-bg: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-color: #e0e0e0;
+    --hover-bg: #f8f9fa;
+    --button-bg: #95a5a6;
+    --button-hover: #7f8c8d;
+    --error-color: #e74c3c;
 }
 
 /* ==========================================
-   ヘッダー部分
+   ヘッダー
    ========================================== */
 
-/* ヘッダー背景 - 茶色 */
 #header {
-    background: var(--color-brown) !important;
-    color: var(--color-white) !important;
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
 }
 
-/* サイトタイトル - 白文字 */
 #site-name a {
-    color: var(--color-white) !important;
-    font-weight: 600;
+    color: var(--sidebar-text) !important;
 }
 
-#site-name a:hover,
-#site-name a:focus {
-    color: var(--color-light-blue) !important;
-}
-
-/* ヘッダーのリンク */
-#header a {
-    color: var(--color-white) !important;
-}
-
-#header a:hover,
-#header a:focus {
-    color: var(--color-light-blue) !important;
-}
-
-/* ユーザーツール */
-#user-tools a {
-    color: var(--color-white) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+#site-name a:hover {
+    color: var(--hover-bg) !important;
 }
 
 /* ==========================================
-   サイドバー
+   サイドバー・モジュール
    ========================================== */
 
-/* サイドバーのリンク - ブルー */
 .module h2,
 .module caption,
-.inline-group h2 {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
-}
-
-/* ナビゲーションサイドバー */
-.module ul li a {
-    color: var(--color-gray) !important;
-}
-
-.module ul li a:hover,
-.module ul li a:focus {
-    color: var(--color-blue) !important;
-    background: var(--color-light-blue) !important;
-}
-
-/* 選択中のナビゲーション */
-.module ul li.selected a {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
-}
-
-/* ==========================================
-   メインコンテンツエリア
-   ========================================== */
-
-/* ページタイトル - 茶色 */
-#content h1 {
-    color: var(--color-brown) !important;
-}
-
-/* サブタイトル - ブルー */
-#content h2,
-#content h3 {
-    color: var(--color-blue) !important;
-}
-
-/* 本文テキスト - グレー */
-#content p,
-#content td,
-#content th,
-#content label {
-    color: var(--color-gray) !important;
-}
-
-/* 強調テキスト - ブルー */
-#content strong,
-#content b {
-    color: var(--color-blue) !important;
-}
-
-/* ==========================================
-   ボタン
-   ========================================== */
-
-/* 主要ボタン - コーラル（アクセントカラー） */
-.button,
-input[type="submit"],
-input[type="button"],
-.submit-row input,
-a.button {
-    background: var(--color-coral) !important;
-    color: var(--color-white) !important;
-    border: none !important;
-}
-
-.button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover,
-.submit-row input:hover,
-a.button:hover {
-    background: var(--color-dark-coral) !important;
-}
-
-/* デフォルトボタン */
-.default {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
-}
-
-.default:hover {
-    background: var(--color-dark-blue) !important;
-}
-
-/* 削除ボタン */
-.deletelink,
-.deletelink-box a {
-    background: #c0392b !important;
-    color: var(--color-white) !important;
-}
-
-.deletelink:hover,
-.deletelink-box a:hover {
-    background: #a93226 !important;
+.inline-group h2,
+#content-related .module h2 {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
 }
 
 /* ==========================================
    リンク
    ========================================== */
 
-/* 通常のリンク - ブルー */
-#content a,
 a {
-    color: var(--color-blue) !important;
+    color: var(--text-primary) !important;
 }
 
-#content a:hover,
 a:hover,
-#content a:focus,
 a:focus {
-    color: var(--color-dark-blue) !important;
+    color: var(--text-secondary) !important;
 }
 
-/* アクションリンク - コーラル */
-.addlink,
-.changelink,
-.viewlink {
-    color: var(--color-coral) !important;
+/* ==========================================
+   ボタン
+   ========================================== */
+
+.button,
+input[type="submit"],
+input[type="button"],
+button[type="submit"],
+.submit-row input {
+    background: var(--button-bg) !important;
+    border-color: var(--button-bg) !important;
+    color: var(--main-bg) !important;
 }
 
-.addlink:hover,
-.changelink:hover,
-.viewlink:hover {
-    color: var(--color-dark-coral) !important;
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button[type="submit"]:hover,
+.submit-row input:hover {
+    background: var(--button-hover) !important;
+    border-color: var(--button-hover) !important;
+}
+
+.button.default,
+input[type="submit"].default,
+.submit-row input.default {
+    background: var(--sidebar-bg) !important;
+    border-color: var(--sidebar-bg) !important;
+}
+
+.button.default:hover,
+input[type="submit"].default:hover,
+.submit-row input.default:hover {
+    background: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
+}
+
+.deletelink,
+.deletelink-box a {
+    background: var(--error-color) !important;
+    color: var(--main-bg) !important;
+}
+
+.deletelink:hover,
+.deletelink-box a:hover {
+    background: #c0392b !important;
 }
 
 /* ==========================================
    テーブル
    ========================================== */
 
-/* テーブルヘッダー - ブルー */
+table thead th,
 #result_list thead th,
-.results thead th {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
+.results thead th,
+#changelist-form table thead th {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
 }
 
-/* テーブルヘッダーリンク */
+table thead th a,
 #result_list thead th a,
 .results thead th a {
-    color: var(--color-white) !important;
+    color: var(--sidebar-text) !important;
 }
 
-/* 行の背景 - 交互の色 */
-#result_list tbody tr:nth-child(odd),
-.results tbody tr:nth-child(odd) {
-    background: var(--color-white);
-}
-
-#result_list tbody tr:nth-child(even),
-.results tbody tr:nth-child(even) {
-    background: var(--color-light-gray);
-}
-
-/* ホバー時 */
+table tbody tr:hover,
 #result_list tbody tr:hover,
 .results tbody tr:hover {
-    background: var(--color-peach) !important;
+    background: var(--hover-bg) !important;
 }
 
 /* ==========================================
    フォーム
    ========================================== */
 
-/* フィールドセット */
-fieldset {
-    border-color: var(--color-light-blue) !important;
-}
-
-fieldset h2 {
-    background: var(--color-brown) !important;
-    color: var(--color-white) !important;
-}
-
-/* 入力フィールド */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"],
-input[type="url"],
-textarea,
-select {
-    border-color: var(--color-light-blue) !important;
+.form-row {
+    border-bottom: 1px solid var(--border-color);
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="number"]:focus,
-input[type="url"]:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--color-blue) !important;
-    outline-color: var(--color-blue) !important;
+    border-color: var(--sidebar-bg) !important;
+    outline: none;
 }
 
 /* ==========================================
-   メッセージ
+   検索バー
    ========================================== */
 
-/* 成功メッセージ */
-.success,
-.messagelist .success {
-    background: #d4edda !important;
-    border-color: #c3e6cb !important;
-    color: #155724 !important;
+#searchbar,
+#toolbar {
+    background: var(--hover-bg) !important;
 }
 
-/* 警告メッセージ */
-.warning,
-.messagelist .warning {
-    background: #fff3cd !important;
-    border-color: #ffeaa7 !important;
-    color: #856404 !important;
+#searchbar input[type="text"],
+#toolbar input[type="text"] {
+    border-color: var(--border-color) !important;
 }
 
-/* エラーメッセージ */
-.error,
-.messagelist .error,
-.errornote {
-    background: #f8d7da !important;
-    border-color: #f5c6cb !important;
-    color: #721c24 !important;
+#searchbar input[type="submit"],
+#toolbar input[type="submit"] {
+    background: var(--button-bg) !important;
+    color: var(--main-bg) !important;
 }
 
-/* インフォメッセージ - コーラル系 */
-.info,
-.messagelist .info {
-    background: var(--color-peach) !important;
-    border-color: var(--color-coral) !important;
-    color: var(--color-brown) !important;
-}
-
-/* ==========================================
-   ダッシュボード
-   ========================================== */
-
-/* ダッシュボードモジュール */
-.module h2 {
-    background: var(--color-brown) !important;
-    color: var(--color-white) !important;
-}
-
-/* ダッシュボードのリンクカラー */
-.dashboard .module table th a {
-    color: var(--color-blue) !important;
-}
-
-/* ==========================================
-   ページネーション
-   ========================================== */
-
-.paginator a {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
-    border: none !important;
-}
-
-.paginator a:hover {
-    background: var(--color-dark-blue) !important;
-}
-
-.paginator .this-page {
-    background: var(--color-coral) !important;
-    color: var(--color-white) !important;
+#searchbar input[type="submit"]:hover,
+#toolbar input[type="submit"]:hover {
+    background: var(--button-hover) !important;
 }
 
 /* ==========================================
@@ -333,111 +178,104 @@ select:focus {
    ========================================== */
 
 #changelist-filter h2 {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
 }
 
 #changelist-filter h3 {
-    color: var(--color-brown) !important;
+    color: var(--text-primary) !important;
+}
+
+#changelist-filter a {
+    color: var(--text-secondary) !important;
+}
+
+#changelist-filter a:hover {
+    color: var(--text-primary) !important;
 }
 
 #changelist-filter li.selected a {
-    color: var(--color-coral) !important;
+    color: var(--text-primary) !important;
     font-weight: bold;
 }
 
 /* ==========================================
-   検索バー
+   ページネーション
    ========================================== */
 
-#searchbar {
-    background: var(--color-light-gray) !important;
+.paginator a,
+.paginator span a {
+    background: var(--button-bg) !important;
+    color: var(--main-bg) !important;
+    border: none !important;
 }
 
-#searchbar input[type="text"] {
-    border-color: var(--color-blue) !important;
+.paginator a:hover,
+.paginator span a:hover {
+    background: var(--button-hover) !important;
 }
 
-#searchbar input[type="submit"] {
-    background: var(--color-blue) !important;
-    color: var(--color-white) !important;
-}
-
-#searchbar input[type="submit"]:hover {
-    background: var(--color-dark-blue) !important;
+.paginator .this-page {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
 }
 
 /* ==========================================
-   ステータスバッジのカスタマイズ
+   メッセージ
    ========================================== */
 
-/* 既存のステータスバッジの色を調整 */
-.status-badge {
+.messagelist {
     border-radius: 4px;
-    padding: 4px 12px;
-    font-weight: 600;
-    font-size: 11px;
 }
 
-/* 購入中 - コーラル */
-.status-ordered {
-    background-color: var(--color-coral) !important;
-    color: var(--color-white) !important;
+ul.messagelist li.success {
+    background: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
 }
 
-/* 本棚保管中 - ブルー */
-.status-available {
-    background-color: var(--color-blue) !important;
-    color: var(--color-white) !important;
+ul.messagelist li.error {
+    background: #f8d7da !important;
+    border-color: #f5c6cb !important;
+    color: #721c24 !important;
 }
 
-/* 貸出中 - ダークブルー */
-.status-rented {
-    background-color: var(--color-dark-blue) !important;
-    color: var(--color-white) !important;
-}
-
-/* その他 - グレー */
-.status-other {
-    background-color: var(--color-gray) !important;
-    color: var(--color-white) !important;
+ul.messagelist li.warning {
+    background: #fff3cd !important;
+    border-color: #ffeaa7 !important;
+    color: #856404 !important;
 }
 
 /* ==========================================
-   レスポンシブ対応
+   ダッシュボード
    ========================================== */
 
-@media (max-width: 768px) {
-    #header {
-        padding: 10px;
-    }
-    
-    .module h2 {
-        font-size: 14px;
-    }
+.dashboard .module h2 {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+}
+
+.dashboard a {
+    color: var(--text-primary) !important;
+}
+
+.dashboard a:hover {
+    color: var(--text-secondary) !important;
 }
 
 /* ==========================================
-   アクセシビリティ
+   ブレッドクラム
    ========================================== */
 
-/* フォーカス時の視認性向上 */
-*:focus {
-    outline: 2px solid var(--color-coral) !important;
-    outline-offset: 2px;
+.breadcrumbs {
+    background: var(--hover-bg) !important;
 }
 
-/* スキップリンク */
-.skip-link {
-    background: var(--color-brown);
-    color: var(--color-white);
-    padding: 8px;
-    position: absolute;
-    left: -9999px;
+.breadcrumbs a {
+    color: var(--text-primary) !important;
 }
 
-.skip-link:focus {
-    left: 0;
-    z-index: 9999;
+.breadcrumbs a:hover {
+    color: var(--text-secondary) !important;
 }
 
