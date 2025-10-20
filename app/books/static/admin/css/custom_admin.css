@@ -250,17 +250,50 @@ ul.messagelist li.warning {
    ダッシュボード
    ========================================== */
 
+.dashboard .module {
+    background: var(--main-bg) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
 .dashboard .module h2 {
     background: var(--sidebar-bg) !important;
     color: var(--sidebar-text) !important;
+}
+
+.dashboard .module table th {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+.dashboard .module table th a {
+    color: var(--text-primary) !important;
+}
+
+.dashboard .module table td a {
+    color: var(--text-primary) !important;
 }
 
 .dashboard a {
     color: var(--text-primary) !important;
 }
 
+.dashboard .module table th a:hover,
+.dashboard .module table td a:hover,
 .dashboard a:hover {
     color: var(--text-secondary) !important;
+}
+
+/* ダッシュボードのアクションリンク */
+.dashboard .addlink,
+.dashboard .changelink,
+.dashboard .viewlink {
+    color: var(--text-primary) !important;
+}
+
+.dashboard .addlink:hover,
+.dashboard .changelink:hover,
+.dashboard .viewlink:hover {
+    color: var(--button-bg) !important;
 }
 
 /* ==========================================
